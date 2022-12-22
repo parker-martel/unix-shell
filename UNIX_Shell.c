@@ -1,3 +1,6 @@
+// Parker Martel
+// CPSC 351 - Operating Systems
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
