@@ -82,8 +82,8 @@ int main(void){
   int i = 0;
 
   while (!finished) {
-    printf("osh> ");
     fflush(stdout);
+    printf("osh> ");
  
     if ((fgets(input, BUFSIZ, stdin)) == NULL) {   // or gets(input, BUFSIZ);
       fprintf(stderr, "no command entered\n");
