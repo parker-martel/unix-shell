@@ -77,7 +77,7 @@ int main(void){
   }
 
   // Array to parse through !N command to get the  N integer
-  char temp[10][15];
+  char *temp;
   
   memset(input, 0, BUFSIZ * sizeof(char));
   memset(input, 0, BUFSIZ * sizeof(char));
@@ -110,7 +110,7 @@ int main(void){
       // command in the history is executed
     } else if (strncmp(input, "!", 1) == 0){
       // Parse through !N command to get the N integer
-      static char* temp[5];
+      char* temp[5];
       memset(temp, 0, sizeof(temp));
       char break_chars[] = {"!"};
       char* p = strtok(input, break_chars);
@@ -133,8 +133,7 @@ int main(void){
         // Print out only the commands
         if (strncmp(history[j], "1", 1) != 0)
         printf("%d %s\n",j+1, history[j]);
-    }
-      
+    }  
       // User enters a UNIX command
     } else {
       strcpy(last_command, input);
@@ -303,111 +302,7 @@ history
 3 ls -l
 2 cal
 1 ls
-osh> !5
-osh> Sun Oct  3 17:15:35 MDT 2021
-ls              
-osh> Driver.java  fig4-23  fig4-23.c  openmp  openmp.c  SumTask.java  thrd-posix  thrd-posix.c  thrd-win32.c  ThreadPoolExample.java  UNIX_Shell  UNIX_Shell2  UNIX_Shell2.c  UNIX_Shell.c
-cat Driver.java &
-Waiting on child...
-osh> 
- * Summation program using exectuors/callable/futures
- *
- * Figure 4.14
- *
- * @author Gagne, Galvin, Silberschatz
- * Operating System Concepts  - Tenth Edition
- * Copyright John Wiley & Sons - 2018
- 
- 
-import java.util.concurrent.*;
-
-class Summation implements Callable<Integer>
-{
-    private int upper;
-
-    public Summation(int upper) {
-        this.upper = upper;
-    }
-
-    public Integer call() {
-        int sum = 0;
-        for (int i = 1; i <= upper; i++)
-            sum += i;
-    
-        return new Integer(sum);
-    }
-}
-
-
-public class Driver
-{
-    public static void main(String[] args) {
-        if (args.length == 1) {
-            int upper = Integer.parseInt(args[0]);
-
-            ExecutorService pool = Executors.newSingleThreadExecutor();
-            Future<Integer> result = pool.submit(new Summation(upper));
-
-            try {
-                System.out.println("sum = " + result.get());
-            }
-            catch (InterruptedException | ExecutionException ie) { }
-
-            pool.shutdown();
-        }
-    }
-}
-!!     
-Waiting on child...
-osh> 
- * Summation program using exectuors/callable/futures
- *
- * Figure 4.14
- *
- * @author Gagne, Galvin, Silberschatz
- * Operating System Concepts  - Tenth Edition
- * Copyright John Wiley & Sons - 2018
- 
- 
-import java.util.concurrent.*;
-
-class Summation implements Callable<Integer>
-{
-    private int upper;
-
-    public Summation(int upper) {
-        this.upper = upper;
-    }
-
-    public Integer call() {
-        int sum = 0;
-        for (int i = 1; i <= upper; i++)
-            sum += i;
-    
-        return new Integer(sum);
-    }
-}
-
-
-public class Driver
-{
-    public static void main(String[] args) {
-        if (args.length == 1) {
-            int upper = Integer.parseInt(args[0]);
-
-            ExecutorService pool = Executors.newSingleThreadExecutor();
-            Future<Integer> result = pool.submit(new Summation(upper));
-
-            try {
-                System.out.println("sum = " + result.get());
-            }
-            catch (InterruptedException | ExecutionException ie) { }
-
-            pool.shutdown();
-        }
-    }
-}
-exit
+osh> exit
 osh exited
 program finished
 osc@ubuntu:~/final-src-osc10e/ch4$ 
